@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:movie_ott/TransData.dart';
 // import 'package:flutter_svg/avd.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +12,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<TransData> TransDataSet = [
+    TransData(
+        TranItemName: 'Cement',
+        TranDate: '17-10-2023',
+        TranQnty: '5',
+        TranCost: '50',
+        TranTotalCost: '250rs'),
+    TransData(
+        TranItemName: 'Sand Mix',
+        TranDate: '17-10-2024',
+        TranQnty: '10',
+        TranCost: '50',
+        TranTotalCost: '250rs'),
+    TransData(
+        TranItemName: 'Iron Rod Ultra',
+        TranDate: '17-10-2023',
+        TranQnty: '5',
+        TranCost: '50',
+        TranTotalCost: '250rs'),
+    TransData(
+        TranItemName: 'Cement and Sand Mix',
+        TranDate: '17-10-2023',
+        TranQnty: '5',
+        TranCost: '50',
+        TranTotalCost: '250rs'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,67 +47,69 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF5AB584),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CardView(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Recent Transactipons'),
-                    Text('See All'),
-                  ],
-                ),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
+        children: [
+          CardView(),
+          // TranListData(),
+          Container(
+            height: 300,
+            child: SingleChildScrollView(
+              child: Column(
+                children: TransDataSet.map((TransDataSet) {
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: Column(
                       children: [
-                        //image
                         Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CircleAvatar(
-                              radius: 25,
-                              backgroundImage: AssetImage(
-                                'lib/Asset/Image/03.Jebin Jose Photo.jpg',
-                              ),
+                            //image
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CircleAvatar(
+                                  radius: 25,
+                                  backgroundImage: AssetImage(
+                                    'lib/Asset/Image/03.Jebin Jose Photo.jpg',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(TransDataSet.TranItemName),
+                                      Text(TransDataSet.TranDate),
+                                      Row(
+                                        children: [
+                                          Text(TransDataSet.TranQnty + ' Q x '),
+                                          Text(TransDataSet.TranCost + ' Rs'),
+                                        ],
+                                      ),
+                                    ]),
+                              ],
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(children: [
-                              Text('Jebin Jose'),
-                              Text('Jebin Jose'),
-                              Text('Jebin Jose'),
-                            ]),
+
+                            Text(TransDataSet.TranTotalCost)
+
+                            //colum for title, date, Quantities and rs
+
+                            //total amount
                           ],
                         ),
-                        Text('Jebin kjhh')
-
-                        //colum for title, date, Quantities and rs
-
-                        //total amount
+                        Divider(
+                          thickness: .5,
+                          color: Colors.black,
+                        ),
                       ],
                     ),
-                    Divider(
-                      thickness: .5,
-                      color: Colors.black,
-                    ),
-                  ],
-                ),
+                  );
+                }).toList(),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -114,13 +144,22 @@ class _CardViewState extends State<CardView> {
                   Text(
                     'Total Balance',
                     style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    '654646.00 RS',
+                    style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text('654646.00RS'),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Container(
                     height: 40,
@@ -159,17 +198,72 @@ class _CardViewState extends State<CardView> {
   }
 }
 
-// class RecentTrans extends StatefulWidget {
-//   const RecentTrans({super.key});
+class TranListData extends StatefulWidget {
+  const TranListData({super.key});
 
-//   @override
-//   State<RecentTrans> createState() => _RecentTransState();
-// }
+  @override
+  State<TranListData> createState() => _TranListDataState();
+}
 
-// class _RecentTransState extends State<RecentTrans> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return print;
-//   }
-// }
+class _TranListDataState extends State<TranListData> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Recent Transactipons'),
+                Text('See All'),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //image
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage(
+                          'lib/Asset/Image/03.Jebin Jose Photo.jpg',
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(children: [
+                        Text('Jebin Jose'),
+                        Text('Jebin Jose'),
+                        Text('Jebin Jose'),
+                      ]),
+                    ],
+                  ),
+                  Text('Jebin kjhh')
 
+                  //colum for title, date, Quantities and rs
+
+                  //total amount
+                ],
+              ),
+              Divider(
+                thickness: .5,
+                color: Colors.black,
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
