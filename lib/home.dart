@@ -12,33 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<TransData> TransDataSet = [
-    TransData(
-        TranItemName: 'Cement',
-        TranDate: '17-10-2023',
-        TranQnty: '5',
-        TranCost: '50',
-        TranTotalCost: '250rs'),
-    TransData(
-        TranItemName: 'Sand Mix',
-        TranDate: '17-10-2024',
-        TranQnty: '10',
-        TranCost: '50',
-        TranTotalCost: '250rs'),
-    TransData(
-        TranItemName: 'Iron Rod Ultra',
-        TranDate: '17-10-2023',
-        TranQnty: '5',
-        TranCost: '50',
-        TranTotalCost: '250rs'),
-    TransData(
-        TranItemName: 'Cement and Sand Mix',
-        TranDate: '17-10-2023',
-        TranQnty: '5',
-        TranCost: '50',
-        TranTotalCost: '250rs'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,65 +23,16 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           CardView(),
-          // TranListData(),
-          Container(
-            height: 300,
-            child: SingleChildScrollView(
-              child: Column(
-                children: TransDataSet.map((TransDataSet) {
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //image
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage: AssetImage(
-                                    'lib/Asset/Image/03.Jebin Jose Photo.jpg',
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(TransDataSet.TranItemName),
-                                      Text(TransDataSet.TranDate),
-                                      Row(
-                                        children: [
-                                          Text(TransDataSet.TranQnty + ' Q x '),
-                                          Text(TransDataSet.TranCost + ' Rs'),
-                                        ],
-                                      ),
-                                    ]),
-                              ],
-                            ),
-
-                            Text(TransDataSet.TranTotalCost)
-
-                            //colum for title, date, Quantities and rs
-
-                            //total amount
-                          ],
-                        ),
-                        Divider(
-                          thickness: .5,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Tranbsaction'),
+                  Text('See All Data'),
+                ]),
           ),
+          TranListData(),
         ],
       ),
     );
@@ -208,62 +132,69 @@ class TranListData extends StatefulWidget {
 class _TranListDataState extends State<TranListData> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Recent Transactipons'),
-                Text('See All'),
-              ],
-            ),
+    return Expanded(
+      child: Container(
+        // constraints: BoxConstraints.expand(),
+
+        // height: 500 - 19,
+        // height: double.maxFinite,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: TransDataSet.map((TransDataSet) {
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //image
+                        Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundImage: AssetImage(
+                                'lib/Asset/Image/03.Jebin Jose Photo.jpg',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(TransDataSet.TranItemName),
+                                  Text(TransDataSet.TranDate),
+                                  Row(
+                                    children: [
+                                      Text(TransDataSet.TranQnty + ' Q x '),
+                                      Text(TransDataSet.TranCost + ' Rs'),
+                                    ],
+                                  ),
+                                ]),
+                          ],
+                        ),
+
+                        Text(TransDataSet.TranTotalCost)
+
+                        //colum for title, date, Quantities and rs
+
+                        //total amount
+                      ],
+                    ),
+                    Divider(
+                      thickness: .5,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  //image
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundImage: AssetImage(
-                          'lib/Asset/Image/03.Jebin Jose Photo.jpg',
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Column(children: [
-                        Text('Jebin Jose'),
-                        Text('Jebin Jose'),
-                        Text('Jebin Jose'),
-                      ]),
-                    ],
-                  ),
-                  Text('Jebin kjhh')
-
-                  //colum for title, date, Quantities and rs
-
-                  //total amount
-                ],
-              ),
-              Divider(
-                thickness: .5,
-                color: Colors.black,
-              ),
-            ],
-          ),
-        )
-      ],
+      ),
     );
   }
 }
