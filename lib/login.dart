@@ -116,9 +116,11 @@ class _LoginState extends State<Login> {
                                 borderRadius: BorderRadius.circular(20)),
                             minimumSize: Size.fromHeight(50)),
                         onPressed: () {
+
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: ((context) {
                             return HomePage();
+                            
                           })));
                         },
                         child: Text(
